@@ -69,7 +69,7 @@
   font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  padding: 1.75rem 1.5rem;
+  padding: 2rem 1.75rem;
   border: none;
   border-bottom: 3px solid rgba(255, 255, 255, 0.15);
   white-space: nowrap;
@@ -109,6 +109,7 @@
   transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   border-bottom: 1px solid #e9ecef;
   cursor: pointer;
+  min-height: 60px;
 }
 
 ::ng-deep .p-datatable-tbody > tr:hover {
@@ -122,19 +123,20 @@
 }
 
 ::ng-deep .p-datatable-tbody > tr > td {
-  padding: 1.75rem 1.5rem;
+  padding: 2rem 1.75rem;
   border: none;
   color: #495057;
   font-size: 0.9375rem;
   vertical-align: middle;
+  line-height: 1.6;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td:first-child {
-  padding-left: 2rem;
+  padding-left: 2.5rem;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td:last-child {
-  padding-right: 2rem;
+  padding-right: 2.5rem;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td strong {
@@ -352,7 +354,7 @@
   }
 
   ::ng-deep .p-datatable-tbody > tr > td {
-    padding: 1.25rem 1rem;
+    padding: 1.5rem 1rem;
     font-size: 0.875rem;
   }
 
