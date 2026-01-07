@@ -69,7 +69,7 @@
   font-size: 0.8125rem;
   text-transform: uppercase;
   letter-spacing: 0.8px;
-  padding: 1.5rem 1.25rem;
+  padding: 1.75rem 1.5rem;
   border: none;
   border-bottom: 3px solid rgba(255, 255, 255, 0.15);
   white-space: nowrap;
@@ -122,7 +122,7 @@
 }
 
 ::ng-deep .p-datatable-tbody > tr > td {
-  padding: 1.5rem 1.25rem;
+  padding: 1.75rem 1.5rem;
   border: none;
   color: #495057;
   font-size: 0.9375rem;
@@ -339,20 +339,20 @@
   }
 
   ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-    padding: 1rem 0.75rem;
+    padding: 1.25rem 1rem;
     font-size: 0.75rem;
   }
 
   ::ng-deep .p-datatable .p-datatable-thead > tr > th:first-child {
-    padding-left: 1rem;
+    padding-left: 1.25rem;
   }
 
   ::ng-deep .p-datatable .p-datatable-thead > tr > th:last-child {
-    padding-right: 1rem;
+    padding-right: 1.25rem;
   }
 
   ::ng-deep .p-datatable-tbody > tr > td {
-    padding: 1rem 0.75rem;
+    padding: 1.25rem 1rem;
     font-size: 0.875rem;
   }
 
