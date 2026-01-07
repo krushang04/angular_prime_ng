@@ -1,54 +1,227 @@
 .user-list-container {
-  padding: 2rem;
-  max-width: 1400px;
+  padding: 2.5rem 1.5rem;
+  max-width: 1600px;
   margin: 0 auto;
+  min-height: 100vh;
 }
 
 .header {
-  margin-bottom: 2rem;
+  margin-bottom: 2.5rem;
+  text-align: center;
 }
 
 .header h1 {
-  margin: 0 0 0.5rem 0;
-  color: var(--text-color);
-  font-size: 2rem;
-  font-weight: 600;
+  margin: 0 0 0.75rem 0;
+  color: #ffffff;
+  font-size: 2.75rem;
+  font-weight: 700;
+  text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+  letter-spacing: -0.5px;
 }
 
 .subtitle {
   margin: 0;
-  color: var(--text-color-secondary);
-  font-size: 1rem;
+  color: rgba(255, 255, 255, 0.9);
+  font-size: 1.125rem;
+  font-weight: 400;
 }
 
 .table-container {
-  background: var(--surface-card);
-  padding: 1.5rem;
-  border-radius: var(--border-radius);
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  background: #ffffff;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.2);
 }
 
 .text-center {
   text-align: center;
-  padding: 2rem;
+  padding: 3rem 2rem;
+  color: #6c757d;
+}
+
+::ng-deep .p-datatable {
+  border-radius: 12px;
+  overflow: hidden;
 }
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th {
-  background: var(--surface-50);
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
   font-weight: 600;
-  color: var(--text-color);
+  font-size: 0.875rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  padding: 1.25rem 1rem;
+  border: none;
+  border-bottom: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th:first-child {
+  border-top-left-radius: 12px;
+}
+
+::ng-deep .p-datatable .p-datatable-thead > tr > th:last-child {
+  border-top-right-radius: 12px;
+}
+
+::ng-deep .p-datatable .p-sortable-column-icon {
+  color: rgba(255, 255, 255, 0.8);
+}
+
+::ng-deep .p-datatable .p-sortable-column-icon:hover {
+  color: #ffffff;
 }
 
 ::ng-deep .p-datatable-striped .p-datatable-tbody > tr:nth-child(even) {
-  background: var(--surface-50);
+  background: #f8f9fa;
+}
+
+::ng-deep .p-datatable-tbody > tr {
+  transition: all 0.2s ease;
+  border-bottom: 1px solid #e9ecef;
 }
 
 ::ng-deep .p-datatable-tbody > tr:hover {
-  background: var(--surface-100) !important;
+  background: linear-gradient(90deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%) !important;
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.15);
+}
+
+::ng-deep .p-datatable-tbody > tr > td {
+  padding: 1.25rem 1rem;
+  border: none;
+  color: #495057;
+  font-size: 0.9375rem;
+}
+
+::ng-deep .p-datatable-tbody > tr > td strong {
+  color: #2c3e50;
+  font-weight: 600;
 }
 
 ::ng-deep .p-paginator {
-  background: transparent;
+  background: #f8f9fa;
   border: none;
-  padding: 1rem 0;
+  border-top: 1px solid #e9ecef;
+  padding: 1.5rem;
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page {
+  border-radius: 8px;
+  margin: 0 2px;
+  min-width: 2.5rem;
+  height: 2.5rem;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page.p-highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.3);
+}
+
+::ng-deep .p-paginator .p-paginator-pages .p-paginator-page:not(.p-highlight):hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+}
+
+::ng-deep .p-paginator .p-paginator-first,
+::ng-deep .p-paginator .p-paginator-prev,
+::ng-deep .p-paginator .p-paginator-next,
+::ng-deep .p-paginator .p-paginator-last {
+  border-radius: 8px;
+  margin: 0 2px;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .p-paginator .p-paginator-first:hover,
+::ng-deep .p-paginator .p-paginator-prev:hover,
+::ng-deep .p-paginator .p-paginator-next:hover,
+::ng-deep .p-paginator .p-paginator-last:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+}
+
+::ng-deep .p-paginator .p-dropdown {
+  border-radius: 8px;
+  border: 1px solid #dee2e6;
+}
+
+::ng-deep .p-tag {
+  padding: 0.5rem 1rem;
+  font-weight: 600;
+  font-size: 0.75rem;
+  letter-spacing: 0.5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .p-tag.p-tag-success {
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
+  color: #ffffff;
+}
+
+::ng-deep .p-tag.p-tag-danger {
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
+  color: #ffffff;
+}
+
+::ng-deep .p-tag.p-tag-warning {
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+  color: #ffffff;
+}
+
+::ng-deep .p-datatable-loading-overlay {
+  background: rgba(255, 255, 255, 0.9);
+  backdrop-filter: blur(4px);
+}
+
+::ng-deep .p-datatable-loading-icon {
+  color: #667eea;
+  font-size: 3rem;
+}
+
+.user-id {
+  color: #667eea;
+  font-weight: 600;
+  font-size: 0.875rem;
+}
+
+.user-name {
+  display: flex;
+  align-items: center;
+}
+
+.role-badge {
+  display: inline-block;
+  padding: 0.375rem 0.75rem;
+  background: linear-gradient(135deg, rgba(102, 126, 234, 0.1) 0%, rgba(118, 75, 162, 0.1) 100%);
+  color: #667eea;
+  border-radius: 6px;
+  font-weight: 500;
+  font-size: 0.8125rem;
+}
+
+@media (max-width: 768px) {
+  .user-list-container {
+    padding: 1.5rem 1rem;
+  }
+
+  .header h1 {
+    font-size: 2rem;
+  }
+
+  .table-container {
+    padding: 1rem;
+    border-radius: 12px;
+  }
+
+  ::ng-deep .p-datatable .p-datatable-thead > tr > th,
+  ::ng-deep .p-datatable-tbody > tr > td {
+    padding: 0.75rem 0.5rem;
+    font-size: 0.875rem;
+  }
 }

@@ -1,6 +1,9 @@
 <div class="user-list-container">
     <div class="header">
-        <h1>User Management</h1>
+        <h1>
+            <i class="pi pi-users" style="margin-right: 0.75rem;"></i>
+            User Management
+        </h1>
         <p class="subtitle">Manage and view all users in the system</p>
     </div>
 
@@ -39,18 +42,34 @@
 
             <ng-template pTemplate="body" let-user>
                 <tr>
-                    <td>{{ user.id }}</td>
                     <td>
-                        <strong>{{ user.name }}</strong>
+                        <span class="user-id">#{{ user.id }}</span>
                     </td>
-                    <td>{{ user.email }}</td>
-                    <td>{{ user.role }}</td>
-                    <td>{{ user.department }}</td>
+                    <td>
+                        <div class="user-name">
+                            <i class="pi pi-user" style="margin-right: 0.5rem; color: #667eea;"></i>
+                            <strong>{{ user.name }}</strong>
+                        </div>
+                    </td>
+                    <td>
+                        <i class="pi pi-envelope" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        {{ user.email }}
+                    </td>
+                    <td>
+                        <span class="role-badge">{{ user.role }}</span>
+                    </td>
+                    <td>
+                        <i class="pi pi-building" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        {{ user.department }}
+                    </td>
                     <td>
                         <p-tag [value]="user.status" [severity]="getStatusSeverity(user.status)" [rounded]="true">
                         </p-tag>
                     </td>
-                    <td>{{ formatDate(user.createdAt) }}</td>
+                    <td>
+                        <i class="pi pi-calendar" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        {{ formatDate(user.createdAt) }}
+                    </td>
                 </tr>
             </ng-template>
 
