@@ -238,6 +238,23 @@
   transform: translateY(-2px);
 }
 
+::ng-deep .p-paginator .p-paginator-first.p-disabled,
+::ng-deep .p-paginator .p-paginator-prev.p-disabled,
+::ng-deep .p-paginator .p-paginator-next.p-disabled,
+::ng-deep .p-paginator .p-paginator-last.p-disabled {
+  opacity: 0.4 !important;
+  cursor: not-allowed !important;
+  pointer-events: none !important;
+}
+
+::ng-deep .p-paginator .p-paginator-first.p-disabled:hover,
+::ng-deep .p-paginator .p-paginator-prev.p-disabled:hover,
+::ng-deep .p-paginator .p-paginator-next.p-disabled:hover,
+::ng-deep .p-paginator .p-paginator-last.p-disabled:hover {
+  background: transparent !important;
+  transform: none !important;
+}
+
 ::ng-deep .p-paginator .p-dropdown {
   border-radius: 8px;
   border: 2px solid #dee2e6;
@@ -274,12 +291,28 @@
   z-index: 9999 !important;
   position: absolute !important;
   background: #ffffff !important;
+  background-color: #ffffff !important;
   min-width: 90px !important;
   padding: 0.5rem 0 !important;
   top: 100% !important;
   left: 0 !important;
   transform: none !important;
-  backdrop-filter: blur(10px) !important;
+}
+
+::ng-deep .p-select-list-container {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-select-list-container * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel,
+::ng-deep .p-paginator .p-dropdown-panel > * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper {
@@ -287,7 +320,7 @@
   background-color: #ffffff !important;
   padding: 0.25rem 0 !important;
   border-radius: 6px !important;
-  overflow: hidden !important;
+  overflow: auto !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items {
@@ -295,12 +328,7 @@
   background-color: #ffffff !important;
   padding: 0 !important;
   border-radius: 6px !important;
-  overflow: hidden !important;
-}
-
-::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper * {
-  background: #ffffff !important;
-  background-color: #ffffff !important;
+  overflow: visible !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
@@ -308,7 +336,60 @@
   background-color: #ffffff !important;
 }
 
-::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item * {
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item:not(:hover):not(.p-highlight) {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item[style] {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper *,
+::ng-deep .p-paginator .p-dropdown-panel * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items-wrapper
+  .p-dropdown-items
+  .p-dropdown-item {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item *,
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item::before,
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item::after {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item[style*="background"] {
   background: #ffffff !important;
   background-color: #ffffff !important;
 }
@@ -342,17 +423,54 @@
   font-weight: 500 !important;
   transition: all 0.2s ease !important;
   background: #ffffff !important;
+  background-color: #ffffff !important;
   color: #495057 !important;
   border: none !important;
   margin: 0.125rem 0.25rem !important;
   border-radius: 4px !important;
+  border-bottom: 1px solid #e9ecef !important;
 }
 
-::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
-::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item span,
-::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item * {
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item:last-child {
+  border-bottom: none !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item[ng-reflect-ng-class],
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item[class*="p-dropdown-item"] {
   background: #ffffff !important;
   background-color: #ffffff !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item:hover {
+  background: rgba(102, 126, 234, 0.1) !important;
+  background-color: rgba(102, 126, 234, 0.1) !important;
+  color: #667eea !important;
+}
+
+::ng-deep
+  .p-paginator
+  .p-dropdown-panel
+  .p-dropdown-items
+  .p-dropdown-item.p-highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
+  background-color: transparent !important;
+  color: #ffffff !important;
 }
 
 ::ng-deep
@@ -371,30 +489,40 @@
   margin-bottom: 0.25rem !important;
 }
 
-
 ::ng-deep .p-tag {
-  padding: 0.5rem 1.125rem;
-  font-weight: 600;
-  font-size: 0.75rem;
-  letter-spacing: 0.8px;
-  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15);
-  text-transform: capitalize;
-  border: none;
+  padding: 0.625rem 1.25rem !important;
+  font-weight: 600 !important;
+  font-size: 0.75rem !important;
+  letter-spacing: 0.8px !important;
+  box-shadow: 0 3px 8px rgba(0, 0, 0, 0.15) !important;
+  text-transform: capitalize !important;
+  border: none !important;
+  border-radius: 20px !important;
+  display: inline-flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  min-height: 2rem !important;
 }
 
 ::ng-deep .p-tag.p-tag-success {
-  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #56ab2f 0%, #a8e063 100%) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 0.625rem 1.25rem !important;
 }
 
 ::ng-deep .p-tag.p-tag-danger {
-  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #eb3349 0%, #f45c43 100%) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 0.625rem 1.25rem !important;
 }
 
 ::ng-deep .p-tag.p-tag-warning {
-  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
-  color: #ffffff;
+  background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%) !important;
+  color: #ffffff !important;
+  border-radius: 20px !important;
+  padding: 0.625rem 1.25rem !important;
 }
 
 ::ng-deep .p-datatable-loading-overlay {
