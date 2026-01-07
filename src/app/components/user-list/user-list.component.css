@@ -330,13 +330,20 @@
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
   padding: 0.75rem 1.25rem !important;
-  font-weight: 500;
-  transition: all 0.2s ease;
+  font-weight: 500 !important;
+  transition: all 0.2s ease !important;
   background: #ffffff !important;
   color: #495057 !important;
   border: none !important;
   margin: 0.125rem 0.25rem !important;
   border-radius: 4px !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item,
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item span,
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 ::ng-deep
