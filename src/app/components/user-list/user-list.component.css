@@ -76,14 +76,14 @@
 ::ng-deep .p-datatable .p-datatable-thead > tr > th {
   background: linear-gradient(135deg, #667eea 0%, #764ba2 100%) !important;
   color: #ffffff !important;
-  font-weight: 600;
-  font-size: 0.8125rem;
-  text-transform: uppercase;
-  letter-spacing: 0.8px;
-  padding: 2.25rem 1.75rem;
-  border: none;
-  border-bottom: 3px solid rgba(255, 255, 255, 0.15);
-  white-space: nowrap;
+  font-weight: 600 !important;
+  font-size: 0.8125rem !important;
+  text-transform: uppercase !important;
+  letter-spacing: 0.8px !important;
+  padding: 2.25rem 1.75rem !important;
+  border: none !important;
+  border-bottom: 3px solid rgba(255, 255, 255, 0.15) !important;
+  white-space: nowrap !important;
 }
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th:hover {
@@ -97,11 +97,11 @@
 }
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th:first-child {
-  padding-left: 2rem;
+  padding-left: 2.5rem !important;
 }
 
 ::ng-deep .p-datatable .p-datatable-thead > tr > th:last-child {
-  padding-right: 2rem;
+  padding-right: 2.5rem !important;
 }
 
 ::ng-deep .p-datatable .p-sortable-column-icon {
@@ -138,20 +138,20 @@
 }
 
 ::ng-deep .p-datatable-tbody > tr > td {
-  padding: 2.25rem 1.75rem;
-  border: none;
-  color: #495057;
-  font-size: 0.9375rem;
-  vertical-align: middle;
-  line-height: 1.7;
+  padding: 2.25rem 1.75rem !important;
+  border: none !important;
+  color: #495057 !important;
+  font-size: 0.9375rem !important;
+  vertical-align: middle !important;
+  line-height: 1.7 !important;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td:first-child {
-  padding-left: 2.5rem;
+  padding-left: 2.5rem !important;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td:last-child {
-  padding-right: 2.5rem;
+  padding-right: 2.5rem !important;
 }
 
 ::ng-deep .p-datatable-tbody > tr > td strong {
@@ -254,13 +254,24 @@
 
 ::ng-deep .p-paginator .p-dropdown-panel {
   border: 2px solid #dee2e6 !important;
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2) !important;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3) !important;
   border-radius: 8px !important;
   margin-top: 0.5rem !important;
   z-index: 9999 !important;
   position: absolute !important;
   background: #ffffff !important;
   min-width: 90px !important;
+  padding: 0.5rem 0 !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper {
+  background: #ffffff !important;
+  padding: 0 !important;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items {
+  background: #ffffff !important;
+  padding: 0 !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel.p-connected-overlay-enter {
@@ -272,9 +283,12 @@
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
-  padding: 0.75rem 1rem;
+  padding: 0.75rem 1rem !important;
   font-weight: 500;
   transition: all 0.2s ease;
+  background: #ffffff !important;
+  color: #495057 !important;
+  border: none !important;
 }
 
 ::ng-deep
