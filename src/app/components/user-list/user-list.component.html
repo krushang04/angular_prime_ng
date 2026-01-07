@@ -1,0 +1,74 @@
+<div class="user-list-container">
+    <div class="header">
+        <h1>User Management</h1>
+        <p class="subtitle">Manage and view all users in the system</p>
+    </div>
+
+    <div class="table-container">
+        <p-table [value]="users()" [loading]="loading()" [paginator]="true" [rows]="10"
+            [rowsPerPageOptions]="[5, 10, 20, 50]" [showCurrentPageReport]="true"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped" [sortMode]="'multiple'"
+            [globalFilterFields]="['name', 'email', 'role', 'department']">
+
+            <ng-template pTemplate="header">
+                <tr>
+                    <th pSortableColumn="id" style="width: 5rem">
+                        ID <p-sortIcon field="id"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="name" style="width: 15rem">
+                        Name <p-sortIcon field="name"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="email" style="width: 20rem">
+                        Email <p-sortIcon field="email"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="role" style="width: 12rem">
+                        Role <p-sortIcon field="role"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="department" style="width: 12rem">
+                        Department <p-sortIcon field="department"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="status" style="width: 10rem">
+                        Status <p-sortIcon field="status"></p-sortIcon>
+                    </th>
+                    <th pSortableColumn="createdAt" style="width: 12rem">
+                        Created At <p-sortIcon field="createdAt"></p-sortIcon>
+                    </th>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="body" let-user>
+                <tr>
+                    <td>{{ user.id }}</td>
+                    <td>
+                        <strong>{{ user.name }}</strong>
+                    </td>
+                    <td>{{ user.email }}</td>
+                    <td>{{ user.role }}</td>
+                    <td>{{ user.department }}</td>
+                    <td>
+                        <p-tag [value]="user.status" [severity]="getStatusSeverity(user.status)" [rounded]="true">
+                        </p-tag>
+                    </td>
+                    <td>{{ formatDate(user.createdAt) }}</td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="emptymessage">
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <p>No users found.</p>
+                    </td>
+                </tr>
+            </ng-template>
+
+            <ng-template pTemplate="loadingbody">
+                <tr>
+                    <td colspan="7" class="text-center">
+                        <i class="pi pi-spin pi-spinner" style="font-size: 2rem"></i>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
+    </div>
+</div>
