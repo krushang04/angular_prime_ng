@@ -284,6 +284,7 @@
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   padding: 0.25rem 0 !important;
   border-radius: 6px !important;
   overflow: hidden !important;
@@ -291,17 +292,25 @@
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items {
   background: #ffffff !important;
+  background-color: #ffffff !important;
   padding: 0 !important;
   border-radius: 6px !important;
   overflow: hidden !important;
 }
 
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items-wrapper * {
+  background: #ffffff !important;
+  background-color: #ffffff !important;
+}
+
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
   background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item * {
-  background: transparent !important;
+  background: #ffffff !important;
+  background-color: #ffffff !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown-panel.p-connected-overlay-enter {
