@@ -208,7 +208,51 @@
 
 ::ng-deep .p-paginator .p-dropdown {
   border-radius: 8px;
-  border: 1px solid #dee2e6;
+  border: 2px solid #dee2e6;
+  min-width: 80px;
+  background: #ffffff;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+::ng-deep .p-paginator .p-dropdown:hover {
+  border-color: #667eea;
+  box-shadow: 0 4px 12px rgba(102, 126, 234, 0.2);
+}
+
+::ng-deep .p-paginator .p-dropdown .p-dropdown-label {
+  padding: 0.625rem 1rem;
+  font-weight: 500;
+  color: #495057;
+  background: transparent;
+}
+
+::ng-deep .p-paginator .p-dropdown .p-dropdown-trigger {
+  background: transparent;
+  color: #495057;
+  width: 2.5rem;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel {
+  border: 2px solid #dee2e6;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+  border-radius: 8px;
+  margin-top: 0.5rem;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+  padding: 0.75rem 1rem;
+  font-weight: 500;
+  transition: all 0.2s ease;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item:hover {
+  background: rgba(102, 126, 234, 0.1);
+  color: #667eea;
+}
+
+::ng-deep .p-paginator .p-dropdown-panel .p-dropdown-items .p-dropdown-item.p-highlight {
+  background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+  color: #ffffff;
 }
 
 ::ng-deep .p-tag {
