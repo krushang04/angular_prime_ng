@@ -244,7 +244,7 @@
 ::ng-deep .p-paginator .p-paginator-last.p-disabled {
   opacity: 0.4 !important;
   cursor: not-allowed !important;
-  pointer-events: none !important;
+  pointer-events: auto !important;
 }
 
 ::ng-deep .p-paginator .p-paginator-first.p-disabled:hover,
@@ -253,6 +253,7 @@
 ::ng-deep .p-paginator .p-paginator-last.p-disabled:hover {
   background: transparent !important;
   transform: none !important;
+  cursor: not-allowed !important;
 }
 
 ::ng-deep .p-paginator .p-dropdown {
