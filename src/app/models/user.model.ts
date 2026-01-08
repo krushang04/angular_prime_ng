@@ -1,18 +1,20 @@
+export type UserStatus = 'active' | 'inactive' | 'pending';
+
 export interface User {
-  id: number;
-  name: string;
-  email: string;
-  role: string;
-  status: 'active' | 'inactive' | 'pending';
-  createdAt: string;
-  department: string;
+  readonly id: number;
+  readonly name: string;
+  readonly email: string;
+  readonly role: string;
+  readonly status: UserStatus;
+  readonly createdAt: string;
+  readonly department: string;
 }
 
 export interface UserApiResponse {
-  data: User[];
-  total: number;
-  page: number;
-  pageSize: number;
-  totalPages: number;
+  readonly data: readonly User[];
+  readonly total: number;
+  readonly page: number;
+  readonly pageSize: number;
+  readonly totalPages: number;
 }
 

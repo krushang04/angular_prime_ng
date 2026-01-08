@@ -1,15 +1,15 @@
 <div class="user-list-container">
     <div class="header">
         <h1>
-            <i class="pi pi-users" style="margin-right: 0.75rem;"></i>
+            <i class="pi pi-users header-icon"></i>
             User Management
         </h1>
         <p class="subtitle">Manage and view all users in the system</p>
     </div>
 
     <div class="table-container">
-        <p-table [value]="users()" [loading]="loading()" [paginator]="true" [rows]="10"
-            [rowsPerPageOptions]="[5, 10, 20, 50]" [showCurrentPageReport]="true"
+        <p-table [value]="users()" [paginator]="true" [rows]="10" [rowsPerPageOptions]="[5, 10, 20, 50]"
+            [showCurrentPageReport]="true"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [tableStyle]="{ 'min-width': '50rem' }" styleClass="p-datatable-striped" [sortMode]="'multiple'"
             [globalFilterFields]="['name', 'email', 'role', 'department']">
@@ -47,19 +47,19 @@
                     </td>
                     <td>
                         <div class="user-name">
-                            <i class="pi pi-user" style="margin-right: 0.5rem; color: #667eea;"></i>
+                            <i class="pi pi-user icon-primary"></i>
                             <strong>{{ user.name }}</strong>
                         </div>
                     </td>
                     <td>
-                        <i class="pi pi-envelope" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        <i class="pi pi-envelope icon-secondary"></i>
                         {{ user.email }}
                     </td>
                     <td>
                         <span class="role-badge">{{ user.role }}</span>
                     </td>
                     <td>
-                        <i class="pi pi-building" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        <i class="pi pi-building icon-secondary"></i>
                         {{ user.department }}
                     </td>
                     <td>
@@ -67,7 +67,7 @@
                         </p-tag>
                     </td>
                     <td>
-                        <i class="pi pi-calendar" style="margin-right: 0.5rem; color: #6c757d;"></i>
+                        <i class="pi pi-calendar icon-secondary"></i>
                         {{ formatDate(user.createdAt) }}
                     </td>
                 </tr>

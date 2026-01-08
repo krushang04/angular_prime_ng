@@ -1,15 +1,24 @@
 import {
   Component,
-  OnInit,
   ChangeDetectionStrategy,
-  signal,
+  inject,
+  computed,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { toSignal } from '@angular/core/rxjs-interop';
 import { TableModule } from 'primeng/table';
 import { TagModule } from 'primeng/tag';
 import { ButtonModule } from 'primeng/button';
 import { UserService } from '../../services/user.service';
-import { User } from '../../models/user.model';
+import { User, UserStatus } from '../../models/user.model';
+
+type Severity = 'success' | 'danger' | 'warn' | 'info';
+
+const STATUS_SEVERITY_MAP: Readonly<Record<UserStatus, Severity>> = {
+  active: 'success',
+  inactive: 'danger',
+  pending: 'warn',
+} as const;
 
 @Component({
   selector: 'app-user-list',
@@ -19,47 +28,18 @@ import { User } from '../../models/user.model';
   styleUrl: './user-list.component.css',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserListComponent implements OnInit {
-  private readonly allUsersSignal = signal<User[]>([]);
-  private readonly loadingSignal = signal<boolean>(false);
+export class UserListComponent {
+  private readonly userService = inject(UserService);
 
-  readonly users = signal<User[]>([]);
-  readonly loading = this.loadingSignal;
+  private readonly users$ = this.userService.getAllUsers();
+  readonly users = toSignal(this.users$, {
+    initialValue: [] as User[],
+  });
 
-  constructor(private readonly userService: UserService) {}
+  readonly isEmpty = computed(() => this.users().length === 0);
 
-  ngOnInit(): void {
-    this.loadUsers();
-  }
-
-  private loadUsers(): void {
-    this.loadingSignal.set(true);
-
-    this.userService.getAllUsers().subscribe({
-      next: (users: User[]) => {
-        this.allUsersSignal.set(users);
-        this.users.set(users);
-        this.loadingSignal.set(false);
-      },
-      error: (error) => {
-        console.error('Error loading users:', error);
-        this.loadingSignal.set(false);
-      },
-    });
-  }
-
-  getStatusSeverity(
-    status: User['status']
-  ): 'success' | 'danger' | 'warn' | 'info' {
-    const severityMap: Record<
-      User['status'],
-      'success' | 'danger' | 'warn' | 'info'
-    > = {
-      active: 'success',
-      inactive: 'danger',
-      pending: 'warn',
-    };
-    return severityMap[status] || 'info';
+  getStatusSeverity(status: UserStatus): Severity {
+    return STATUS_SEVERITY_MAP[status] ?? 'info';
   }
 
   formatDate(dateString: string): string {

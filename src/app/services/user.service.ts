@@ -1,35 +1,14 @@
 import { Injectable } from '@angular/core';
-import {
-  HttpClient,
-  HttpHeaders,
-  HttpErrorResponse,
-} from '@angular/common/http';
-import { Observable, delay, of, throwError } from 'rxjs';
-import { catchError, map, retry } from 'rxjs/operators';
+import { Observable, delay, of } from 'rxjs';
 import { User, UserApiResponse } from '../models/user.model';
 
 @Injectable({
   providedIn: 'root',
 })
 export class UserService {
-  private readonly apiUrl = 'https://api.example.com/users';
-
-  constructor(private http: HttpClient) {}
-
-  private handleError(error: HttpErrorResponse): Observable<never> {
-    console.error('API Error:', error);
-    return throwError(
-      () => new Error('Something went wrong. Please try again later.')
-    );
-  }
-
-  private getApiHeaders(): HttpHeaders {
-    return new HttpHeaders({
-      'Content-Type': 'application/json',
-      Authorization: 'Bearer dummy-token-12345',
-      Accept: 'application/json',
-    });
-  }
+  private readonly API_URL = 'https://api.example.com/users';
+  private readonly API_DELAY_MS = 200;
+  private readonly PAGINATED_DELAY_MS = 300;
   private readonly mockUsers: User[] = [
     {
       id: 1,
@@ -487,36 +466,14 @@ export class UserService {
     page: number = 1,
     pageSize: number = 10
   ): Observable<UserApiResponse> {
-    const headers = this.getApiHeaders();
-    const url = `${this.apiUrl}?page=${page}&pageSize=${pageSize}`;
-
-    console.log(`[API Call] GET ${url}`, {
-      headers: Object.fromEntries(
-        headers.keys().map((key) => [key, headers.get(key)])
-      ),
-    });
-
+    const url = `${this.API_URL}?page=${page}&pageSize=${pageSize}`;
     const mockResponse = this.getMockUsersResponse(page, pageSize);
-    console.log('[API Mock] Simulating API response with hardcoded data');
-    console.log('[API Mock] Response:', mockResponse);
 
-    return of(mockResponse).pipe(delay(300));
+    return of(mockResponse).pipe(delay(this.PAGINATED_DELAY_MS));
   }
 
   getAllUsers(): Observable<User[]> {
-    const headers = this.getApiHeaders();
-    const url = `${this.apiUrl}/all`;
-
-    console.log(`[API Call] GET ${url}`, {
-      headers: Object.fromEntries(
-        headers.keys().map((key) => [key, headers.get(key)])
-      ),
-    });
-
-    console.log('[API Mock] Simulating API response with hardcoded data');
-    console.log('[API Mock] Response:', this.mockUsers);
-
-    return of(this.mockUsers).pipe(delay(200));
+    return of(this.mockUsers).pipe(delay(this.API_DELAY_MS));
   }
 
   private getMockUsersResponse(
