@@ -1,11 +1,35 @@
 import { Injectable } from '@angular/core';
-import { Observable, delay, of } from 'rxjs';
+import {
+  HttpClient,
+  HttpHeaders,
+  HttpErrorResponse,
+} from '@angular/common/http';
+import { Observable, delay, of, throwError } from 'rxjs';
+import { catchError, map, retry } from 'rxjs/operators';
 import { User, UserApiResponse } from '../models/user.model';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserService {
+  private readonly apiUrl = 'https://api.example.com/users';
+
+  constructor(private http: HttpClient) {}
+
+  private handleError(error: HttpErrorResponse): Observable<never> {
+    console.error('API Error:', error);
+    return throwError(
+      () => new Error('Something went wrong. Please try again later.')
+    );
+  }
+
+  private getApiHeaders(): HttpHeaders {
+    return new HttpHeaders({
+      'Content-Type': 'application/json',
+      Authorization: 'Bearer dummy-token-12345',
+      Accept: 'application/json',
+    });
+  }
   private readonly mockUsers: User[] = [
     {
       id: 1,
@@ -14,7 +38,7 @@ export class UserService {
       role: 'Administrator',
       status: 'active',
       createdAt: '2024-01-15T10:30:00Z',
-      department: 'IT'
+      department: 'IT',
     },
     {
       id: 2,
@@ -23,7 +47,7 @@ export class UserService {
       role: 'Manager',
       status: 'active',
       createdAt: '2024-01-20T14:20:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 3,
@@ -32,7 +56,7 @@ export class UserService {
       role: 'Developer',
       status: 'active',
       createdAt: '2024-02-01T09:15:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 4,
@@ -41,7 +65,7 @@ export class UserService {
       role: 'Designer',
       status: 'active',
       createdAt: '2024-02-05T11:45:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 5,
@@ -50,7 +74,7 @@ export class UserService {
       role: 'Analyst',
       status: 'inactive',
       createdAt: '2024-02-10T16:30:00Z',
-      department: 'Finance'
+      department: 'Finance',
     },
     {
       id: 6,
@@ -59,7 +83,7 @@ export class UserService {
       role: 'Manager',
       status: 'active',
       createdAt: '2024-02-12T08:20:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 7,
@@ -68,7 +92,7 @@ export class UserService {
       role: 'Developer',
       status: 'active',
       createdAt: '2024-02-15T13:10:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 8,
@@ -77,7 +101,7 @@ export class UserService {
       role: 'HR Specialist',
       status: 'pending',
       createdAt: '2024-02-18T10:00:00Z',
-      department: 'Human Resources'
+      department: 'Human Resources',
     },
     {
       id: 9,
@@ -86,7 +110,7 @@ export class UserService {
       role: 'Developer',
       status: 'active',
       createdAt: '2024-02-20T15:45:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 10,
@@ -95,7 +119,7 @@ export class UserService {
       role: 'Product Manager',
       status: 'active',
       createdAt: '2024-02-22T12:30:00Z',
-      department: 'Product'
+      department: 'Product',
     },
     {
       id: 11,
@@ -104,7 +128,7 @@ export class UserService {
       role: 'Developer',
       status: 'active',
       createdAt: '2024-02-25T09:00:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 12,
@@ -113,7 +137,7 @@ export class UserService {
       role: 'Marketing Specialist',
       status: 'active',
       createdAt: '2024-02-28T14:15:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 13,
@@ -122,7 +146,7 @@ export class UserService {
       role: 'Sales Representative',
       status: 'inactive',
       createdAt: '2024-03-01T11:20:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 14,
@@ -131,7 +155,7 @@ export class UserService {
       role: 'Designer',
       status: 'active',
       createdAt: '2024-03-03T16:00:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 15,
@@ -140,7 +164,7 @@ export class UserService {
       role: 'Analyst',
       status: 'active',
       createdAt: '2024-03-05T10:30:00Z',
-      department: 'Finance'
+      department: 'Finance',
     },
     {
       id: 16,
@@ -149,7 +173,7 @@ export class UserService {
       role: 'Administrator',
       status: 'active',
       createdAt: '2024-03-08T13:45:00Z',
-      department: 'IT'
+      department: 'IT',
     },
     {
       id: 17,
@@ -158,7 +182,7 @@ export class UserService {
       role: 'Developer',
       status: 'pending',
       createdAt: '2024-03-10T08:15:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 18,
@@ -167,7 +191,7 @@ export class UserService {
       role: 'Manager',
       status: 'active',
       createdAt: '2024-03-12T15:30:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 19,
@@ -176,7 +200,7 @@ export class UserService {
       role: 'Developer',
       status: 'active',
       createdAt: '2024-03-15T12:00:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 20,
@@ -185,7 +209,7 @@ export class UserService {
       role: 'HR Specialist',
       status: 'active',
       createdAt: '2024-03-18T09:45:00Z',
-      department: 'Human Resources'
+      department: 'Human Resources',
     },
     {
       id: 21,
@@ -194,7 +218,7 @@ export class UserService {
       role: 'Senior Developer',
       status: 'active',
       createdAt: '2024-03-20T10:00:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 22,
@@ -203,7 +227,7 @@ export class UserService {
       role: 'UX Designer',
       status: 'active',
       createdAt: '2024-03-22T11:30:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 23,
@@ -212,7 +236,7 @@ export class UserService {
       role: 'Business Analyst',
       status: 'active',
       createdAt: '2024-03-25T09:15:00Z',
-      department: 'Finance'
+      department: 'Finance',
     },
     {
       id: 24,
@@ -221,7 +245,7 @@ export class UserService {
       role: 'Marketing Manager',
       status: 'active',
       createdAt: '2024-03-28T14:20:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 25,
@@ -230,7 +254,7 @@ export class UserService {
       role: 'Sales Director',
       status: 'active',
       createdAt: '2024-04-01T08:45:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 26,
@@ -239,7 +263,7 @@ export class UserService {
       role: 'Product Designer',
       status: 'active',
       createdAt: '2024-04-03T13:10:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 27,
@@ -248,7 +272,7 @@ export class UserService {
       role: 'DevOps Engineer',
       status: 'active',
       createdAt: '2024-04-05T10:30:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 28,
@@ -257,7 +281,7 @@ export class UserService {
       role: 'Content Writer',
       status: 'active',
       createdAt: '2024-04-08T11:00:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 29,
@@ -266,7 +290,7 @@ export class UserService {
       role: 'QA Engineer',
       status: 'active',
       createdAt: '2024-04-10T15:20:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 30,
@@ -275,7 +299,7 @@ export class UserService {
       role: 'Account Manager',
       status: 'active',
       createdAt: '2024-04-12T09:30:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 31,
@@ -284,7 +308,7 @@ export class UserService {
       role: 'Frontend Developer',
       status: 'active',
       createdAt: '2024-04-15T12:45:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 32,
@@ -293,7 +317,7 @@ export class UserService {
       role: 'Data Analyst',
       status: 'active',
       createdAt: '2024-04-18T10:15:00Z',
-      department: 'Finance'
+      department: 'Finance',
     },
     {
       id: 33,
@@ -302,7 +326,7 @@ export class UserService {
       role: 'Backend Developer',
       status: 'active',
       createdAt: '2024-04-20T14:00:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 34,
@@ -311,7 +335,7 @@ export class UserService {
       role: 'Graphic Designer',
       status: 'active',
       createdAt: '2024-04-22T11:30:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 35,
@@ -320,7 +344,7 @@ export class UserService {
       role: 'Sales Manager',
       status: 'inactive',
       createdAt: '2024-04-25T08:20:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 36,
@@ -329,7 +353,7 @@ export class UserService {
       role: 'HR Manager',
       status: 'active',
       createdAt: '2024-04-28T13:45:00Z',
-      department: 'Human Resources'
+      department: 'Human Resources',
     },
     {
       id: 37,
@@ -338,7 +362,7 @@ export class UserService {
       role: 'Full Stack Developer',
       status: 'active',
       createdAt: '2024-05-01T10:00:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 38,
@@ -347,7 +371,7 @@ export class UserService {
       role: 'Financial Analyst',
       status: 'active',
       createdAt: '2024-05-03T15:30:00Z',
-      department: 'Finance'
+      department: 'Finance',
     },
     {
       id: 39,
@@ -356,7 +380,7 @@ export class UserService {
       role: 'Marketing Coordinator',
       status: 'active',
       createdAt: '2024-05-05T09:15:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 40,
@@ -365,7 +389,7 @@ export class UserService {
       role: 'UI Designer',
       status: 'active',
       createdAt: '2024-05-08T12:20:00Z',
-      department: 'Design'
+      department: 'Design',
     },
     {
       id: 41,
@@ -374,7 +398,7 @@ export class UserService {
       role: 'System Administrator',
       status: 'active',
       createdAt: '2024-05-10T11:00:00Z',
-      department: 'IT'
+      department: 'IT',
     },
     {
       id: 42,
@@ -383,7 +407,7 @@ export class UserService {
       role: 'Product Owner',
       status: 'active',
       createdAt: '2024-05-12T14:30:00Z',
-      department: 'Product'
+      department: 'Product',
     },
     {
       id: 43,
@@ -392,7 +416,7 @@ export class UserService {
       role: 'Software Architect',
       status: 'active',
       createdAt: '2024-05-15T10:45:00Z',
-      department: 'Engineering'
+      department: 'Engineering',
     },
     {
       id: 44,
@@ -401,7 +425,7 @@ export class UserService {
       role: 'Brand Manager',
       status: 'active',
       createdAt: '2024-05-18T13:15:00Z',
-      department: 'Marketing'
+      department: 'Marketing',
     },
     {
       id: 45,
@@ -410,7 +434,7 @@ export class UserService {
       role: 'Customer Success',
       status: 'active',
       createdAt: '2024-05-20T09:30:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 46,
@@ -419,7 +443,7 @@ export class UserService {
       role: 'Recruiter',
       status: 'active',
       createdAt: '2024-05-22T11:45:00Z',
-      department: 'Human Resources'
+      department: 'Human Resources',
     },
     {
       id: 47,
@@ -428,7 +452,7 @@ export class UserService {
       role: 'Security Engineer',
       status: 'active',
       createdAt: '2024-05-25T15:00:00Z',
-      department: 'IT'
+      department: 'IT',
     },
     {
       id: 48,
@@ -437,7 +461,7 @@ export class UserService {
       role: 'Business Development',
       status: 'pending',
       createdAt: '2024-05-28T10:20:00Z',
-      department: 'Sales'
+      department: 'Sales',
     },
     {
       id: 49,
@@ -446,7 +470,7 @@ export class UserService {
       role: 'Technical Writer',
       status: 'active',
       createdAt: '2024-06-01T12:00:00Z',
-      department: 'Product'
+      department: 'Product',
     },
     {
       id: 50,
@@ -455,29 +479,61 @@ export class UserService {
       role: 'Operations Manager',
       status: 'active',
       createdAt: '2024-06-03T14:30:00Z',
-      department: 'Operations'
-    }
+      department: 'Operations',
+    },
   ];
 
-  getUsers(page: number = 1, pageSize: number = 10): Observable<UserApiResponse> {
+  getUsers(
+    page: number = 1,
+    pageSize: number = 10
+  ): Observable<UserApiResponse> {
+    const headers = this.getApiHeaders();
+    const url = `${this.apiUrl}?page=${page}&pageSize=${pageSize}`;
+
+    console.log(`[API Call] GET ${url}`, {
+      headers: Object.fromEntries(
+        headers.keys().map((key) => [key, headers.get(key)])
+      ),
+    });
+
+    const mockResponse = this.getMockUsersResponse(page, pageSize);
+    console.log('[API Mock] Simulating API response with hardcoded data');
+    console.log('[API Mock] Response:', mockResponse);
+
+    return of(mockResponse).pipe(delay(300));
+  }
+
+  getAllUsers(): Observable<User[]> {
+    const headers = this.getApiHeaders();
+    const url = `${this.apiUrl}/all`;
+
+    console.log(`[API Call] GET ${url}`, {
+      headers: Object.fromEntries(
+        headers.keys().map((key) => [key, headers.get(key)])
+      ),
+    });
+
+    console.log('[API Mock] Simulating API response with hardcoded data');
+    console.log('[API Mock] Response:', this.mockUsers);
+
+    return of(this.mockUsers).pipe(delay(200));
+  }
+
+  private getMockUsersResponse(
+    page: number,
+    pageSize: number
+  ): UserApiResponse {
     const startIndex = (page - 1) * pageSize;
     const endIndex = startIndex + pageSize;
     const paginatedData = this.mockUsers.slice(startIndex, endIndex);
     const totalPages = Math.ceil(this.mockUsers.length / pageSize);
 
-    const response: UserApiResponse = {
+    return {
       data: paginatedData,
       total: this.mockUsers.length,
       page,
       pageSize,
-      totalPages
+      totalPages,
     };
-
-    return of(response).pipe(delay(300));
-  }
-
-  getAllUsers(): Observable<User[]> {
-    return of(this.mockUsers).pipe(delay(200));
   }
 }
-
